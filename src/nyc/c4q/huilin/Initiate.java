@@ -6,79 +6,32 @@ package nyc.c4q.huilin;
 public class Initiate extends Extra {
 
     static Extra console = new Extra();
-    static int choice;
-
 
     public static int receiveInt() {
+        boolean isNumber;
+        int choice = 0;
 
-        String input;
-        boolean isValidInput = false;
-//        boolean isValidNewInput = true;
 
-        while (true) {
-            input = scanner.next();
-            if (!isNumber(input)) {
+        do {
+            isNumber = scanner.hasNextInt();
+            if (!isNumber) {
                 System.out.println("Enter a number! ");
-            }
-            else {
-                break;
-            }
-        }
+                String garbage = scanner.next();
+                isNumber = false;
 
-//        do {
-//
-//            input = scanner.next();
-//
-//            isValidInput = isNumber(input);
-//
-//            if (i)
-//            //isValidInput = scanner.hasNextInt();
-//            //System.out.println(isValidInput);
-//
-//            if (isValidInput) {
-//                choice = scanner.nextInt();
-//
-//            } else {
-//                // make it redo the loop and ask for
-//                System.out.println("Please enter a number!");
-//                isValidInput = scanner.hasNextInt();
-//            }
-//
-//        } while (!isValidInput);
+            } else {
+                choice = scanner.nextInt();
+                if (choice == 0 || choice > 5) {
+                    System.out.println("Enter a number from 1 - 4");
+                    isNumber = false;
+                } else {
+                    isNumber = true;
+                }
+            }
 
+        } while (!isNumber);
         return choice;
     }
-
-//    public static String receiveAnswer(String answer) {
-//
-//        boolean isValidInput;
-//
-//        do {
-//
-//            answer = scanner.nextLine();
-//
-//            if (answer.equalsIgnoreCase("yes")) {
-    // start the yes answer path
-    // use a goodEnd method
-
-//            } else if (answer.equalsIgnoreCase("no")) {
-//
-//             start the no answer path
-//    use a badEnd method
-
-//            } else {
-    // ask for user to enter again "yes or no"
-
-
-//
-//        } while (!isValidInput);
-//
-//        // how to make this false
-//
-//        return choice;
-//    }
-
-
 
     public static void round1() {
 
@@ -92,10 +45,11 @@ public class Initiate extends Extra {
                 "Choice 2: The people on my right are closer. \n" +
                 "Choice 3: I'm being pulled to the left! \n" +
                 "Choice 4: The horror of having to hug people ugh! \n");
+
+
     }
 
-    public static void round2() {
-
+    public static String round2(int choice) {
         switch (choice) {
             case 1:
                 console.log("\nWell that was easy! You hear a person wail dramatically. You and your friends share a chuckle and float around each other while " +
@@ -117,7 +71,7 @@ public class Initiate extends Extra {
                 break;
             case 3:
                 console.log("Arms are all around you and they're giggling. Aw it's a family!  They decide to hold your hand and twirl in a circle. \n" +
-                        "You see the groups dispersing and awaiting for the next number to be called. Will you do the same? (Y/N)");
+                        "You see the groups dispersing and awaiting for the next number to be called. Will you do the same? Yes or No?");
                 break;
             case 4:
                 console.log("SOMEHOW you ended in a group where no one knows each other. Nice job! You guys quickly give each other space and\n" +
@@ -126,6 +80,29 @@ public class Initiate extends Extra {
                 break;
 
         }
+
+        boolean correct = true;
+        String ending = "";
+
+        do {
+            boolean isYN = scanner.hasNext();
+            if (isYN) {
+                String x = scanner.next();
+                if (x.equalsIgnoreCase("yes") || x.equalsIgnoreCase("y")) {
+                    System.out.println("Here's the good ending");
+                    ending = "good";
+                    correct = true;
+                } else if (x.equalsIgnoreCase("no") || x.equalsIgnoreCase("n")) {
+                    System.out.println("bad ending");
+                    ending = "bad";
+                    correct = true;
+                } else {
+                    System.out.println("Please enter yes, y, no, or n.");
+                    correct = false;
+
+                }
+            }
+        } while (!correct);
+        return ending;
     }
 }
-

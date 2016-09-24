@@ -70,33 +70,13 @@ Example:
  *
  */
 
-import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
         Initiate.round1();
-        Initiate.receiveInt();
-        Initiate.round2();
+        Initiate.round2(Initiate.receiveInt());
 
 
     }
 }
-
-
-
-
-//        String decision = scanner.nextLine();
-//
-//        if (decision.equalsIgnoreCase("yes")) {
-//
-//        } else if (decision.equalsIgnoreCase("no")) {
-//
-//        } else {
-//
-//            while (decision.equalsIgnoreCase() != "yes" || decision.equalsIgnoreCase() != "no") {
-//
-//            }
-//
-//        }
-
