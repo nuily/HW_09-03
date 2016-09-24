@@ -75,7 +75,7 @@ public class Main {
 
     public static void main(String[] args) {
         Initiate.round1();
-        Initiate.round2(Initiate.receiveInt());
+        Initiate.endRound(Initiate.round2(Initiate.receiveInt()));
 
 
     }
