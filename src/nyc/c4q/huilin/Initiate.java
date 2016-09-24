@@ -7,6 +7,10 @@ public class Initiate extends Extra {
 
     static Extra console = new Extra();
 
+    public enum TheEnd {
+        BAD, GOOD, NEUTRAL;
+    }
+
     public static int receiveInt() {
         boolean isNumber;
         int choice = 0;
@@ -49,7 +53,7 @@ public class Initiate extends Extra {
 
     }
 
-    public static String round2(int choice) {
+    public static TheEnd round2(int choice) {
         switch (choice) {
             case 1:
                 console.log("\nWell that was easy! You hear a person wail dramatically. You and your friends share a chuckle and float around each other while " +
@@ -71,7 +75,8 @@ public class Initiate extends Extra {
                 break;
             case 3:
                 console.log("Arms are all around you and they're giggling. Aw it's a family!  They decide to hold your hand and twirl in a circle. \n" +
-                        "You see the groups dispersing and awaiting for the next number to be called. Will you do the same? Yes or No?");
+                        "You see the groups dispersing and awaiting for the next number to be called but the kids are shouting your name. (How did they know your name?" +
+                        "Will you walk away from them? Yes or No?");
                 break;
             case 4:
                 console.log("SOMEHOW you ended in a group where no one knows each other. Nice job! You guys quickly give each other space and\n" +
@@ -82,19 +87,17 @@ public class Initiate extends Extra {
         }
 
         boolean correct = true;
-        String ending = "";
+        TheEnd ending = TheEnd.NEUTRAL;
 
         do {
             boolean isYN = scanner.hasNext();
             if (isYN) {
                 String x = scanner.next();
                 if (x.equalsIgnoreCase("yes") || x.equalsIgnoreCase("y")) {
-                    System.out.println("Here's the good ending");
-                    ending = "good";
+                    ending = TheEnd.GOOD;
                     correct = true;
                 } else if (x.equalsIgnoreCase("no") || x.equalsIgnoreCase("n")) {
-                    System.out.println("bad ending");
-                    ending = "bad";
+                    ending = TheEnd.BAD;
                     correct = true;
                 } else {
                     System.out.println("Please enter yes, y, no, or n.");
@@ -104,5 +107,17 @@ public class Initiate extends Extra {
             }
         } while (!correct);
         return ending;
+    }
+
+    public static void endRound(TheEnd type) {
+
+        switch(type) {
+            case BAD: console.log("You feel a drop on your left cheek. You wipe it with your finger and stare blankly at the" +
+                    "color. Unsure of where it came from, you look around but what you see shocks you. How could your day end like this...");
+                break;
+            case GOOD: console.log("The organizer comes up to you and hands you a Samsung Galaxy Note S7. Good thing you came out of your java bubble!");
+                break;
+
+        }
     }
 }
